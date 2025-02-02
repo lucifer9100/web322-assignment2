@@ -70,7 +70,7 @@ app.get('/solutions/projects/id-demo', (req, res) => {
 
 //route to get project by sector name
 app.get('/solutions/projects/sector-demo', (req, res) => {
-    projectData.getProjectsBySector('industry')
+    projectData.getProjectsBySector('ind')
         .then(projects => {
             res.json({
                 ...studentInfo,
