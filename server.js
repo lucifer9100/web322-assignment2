@@ -51,7 +51,7 @@ app.get('/solutions/projects', (req, res) => {
 });
 
 app.get('/solutions/projects/id-demo', (req, res) => {
-    projectData.getProjectById(18)
+    projectData.getProjectById(10)
         .then(project => {
             res.json({
                 ...studentInfo,
