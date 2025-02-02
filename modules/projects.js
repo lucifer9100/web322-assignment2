@@ -60,7 +60,7 @@ function getProjectById(projectId){
 function getProjectsBySector(projectSector){
     return new Promise((resolve, reject) => {
         let foundProjects = projects.filter((p)=>{
-            p.sec.toLowerCase().includes(projectSector.toLowerCase());
+            p.sector.toLowerCase().includes(projectSector.toLowerCase());
 
         });
         if (foundProjects.length === 0) {
