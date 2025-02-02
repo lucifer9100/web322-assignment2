@@ -57,18 +57,18 @@ function getProjectById(projectId){
 }
 
 //function to get project by sector
-function getProjectsBySector(projectSector){
+function getProjectsBySector(projectSector) {
     return new Promise((resolve, reject) => {
-        let foundProjects = projects.filter((p)=>{
-            p.sector.toLowerCase().includes(projectSector.toLowerCase());
+        let foundProjects = projects.filter((p) => 
+            p.sector.toLowerCase().includes(projectSector.toLowerCase())
+        );
 
-        });
-        if (foundProjects.length === 0) {
+        if (foundProjects.length > 0) {
             resolve(foundProjects);
-        } else{
-            reject('No Projects were found that were entered');
+        } else {
+            reject('No Projects were found for the entered sector.');
         }
-    })
+    });
 }
 
 //export all the functions
