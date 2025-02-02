@@ -10,11 +10,11 @@
 *
 ********************************************************************************/
 
-const express = require('express');
-const projectData = require('./modules/projects');
+const express = require('express'); //importing express framework
+const projectData = require('./modules/projects'); //importing projectdata module
 
 const app = express(); 
-const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = process.env.PORT || 8080; //defining server port
 
 // Student information
 const studentInfo = {
@@ -22,6 +22,7 @@ const studentInfo = {
     studentId: "153185236"
 };
 
+//initializing project data and starting the server when it is ready
 projectData.initialize()
     .then(() => {
         app.listen(HTTP_PORT, () => {
@@ -32,10 +33,12 @@ projectData.initialize()
         console.error('Failed to initialize data:', err);
     });
 
+//root route
 app.get('/', (req, res) => {
     res.send(`Assignment 2: ${studentInfo.name} - ${studentInfo.studentId}`);
 });
 
+// route used to get all the projects
 app.get('/solutions/projects', (req, res) => {
     projectData.getAllProjects()
         .then(projects => {
@@ -50,6 +53,7 @@ app.get('/solutions/projects', (req, res) => {
         });
 });
 
+//route to get project by id
 app.get('/solutions/projects/id-demo', (req, res) => {
     projectData.getProjectById(10)
         .then(project => {
@@ -64,8 +68,9 @@ app.get('/solutions/projects/id-demo', (req, res) => {
         });
 });
 
+//route to get project by sector name
 app.get('/solutions/projects/sector-demo', (req, res) => {
-    projectData.getProjectsBySector('ind')
+    projectData.getProjectsBySector('industry')
         .then(projects => {
             res.json({
                 ...studentInfo,
@@ -74,7 +79,7 @@ app.get('/solutions/projects/sector-demo', (req, res) => {
             });
         })
         .catch(err => {
-            res.status(404).send(err);
+            res.status(404).send(err); //sending error if no project is found with the given sector name
         });
 });
 
